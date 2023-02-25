@@ -12,7 +12,7 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: |
       # List the resources in the source resource group
-      resources=$(az resource list --resource-group SourceResourceGroup --query '[].{name:name,type:type}' --output json)
+      resources=$(az resource list --resource-group wm-eo-dev-rg --query '[].{name:name,type:type}' --output json)
 
       # Loop through the resources and create them in the destination resource group
       for row in $(echo "${resources}" | jq -r '.[] | @base64'); do
@@ -23,5 +23,5 @@ steps:
           name=$(_jq '.name')
           type=$(_jq '.type')
 
-          az resource create --resource-group DestinationResourceGroup --name $name --type $type
+          az resource create --resource-group wm-eo-dev-rg --name $name --type $type
     azurePowerShellVersion: 'LatestVersion'
