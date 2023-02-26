@@ -5,23 +5,11 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: AzureCLI@2
+- task: AzureFunctionApp@1
+  displayName: 'Deploy logic app workflows'
   inputs:
-    azureSubscription: 'DeployTraineeSkillsSolution'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: |
-      # List the resources in the source resource group
-      resources=$(az resource list --resource-group wm-eo-dev-rg --query '[].{name:name,type:type}' --output json)
-
-      # Loop through the resources and create them in the destination resource group
-      for row in $(echo "${resources}" | jq -r '.[] | @base64'); do
-          _jq() {
-            echo ${row} | base64 --decode | jq -r ${1}
-          }
-
-          name=$(_jq '.name')
-          type=$(_jq '.type')
-
-          az resource create --resource-group wm-eo-dev-rg --name $name --type $type
-    azurePowerShellVersion: 'LatestVersion'
+     azureSubscription: 'MyServiceConnection'
+     appType: 'functionAppLinux' ## Default: functionApp 
+     appName: 'la-msf-dev'
+     package: 'MyBuildArtifact.zip'
+     deploymentMethod: 'zipDeploy'
