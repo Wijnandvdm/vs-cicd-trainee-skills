@@ -12,9 +12,6 @@ steps:
     KeyVaultName: 'kv-trainee-skills-dev'
     SecretsFilter: 'sqldb-username, sqldb-password'
 
-- script: |
-    Write-Host $(sqldb-username)
-
 - task: AzureMysqlDeployment@1
   inputs:
     azureSubscription: 'DeployTraineeSkillsSolution'
