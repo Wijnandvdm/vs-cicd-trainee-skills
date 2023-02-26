@@ -13,7 +13,7 @@ steps:
     SecretsFilter: 'sqldb-username, sqldb-password'
 
 - task: SqlAzureDacpacDeployment@1
-  displayName: 'Update stored procedures and table trigger'
+  displayName: 'Create or update stored procedures and table trigger'
   inputs:
     azureSubscription: 'DeployTraineeSkillsSolution'
     AuthenticationType: 'server'
