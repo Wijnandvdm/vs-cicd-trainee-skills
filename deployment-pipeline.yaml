@@ -6,11 +6,11 @@ pool:
 
 steps:
 - task: AzureKeyVault@2
-  displayName: 'Get secret from Key Vault'
+  displayName: 'Get secrets from Key Vault'
   inputs:
     azureSubscription: 'DeployTraineeSkillsSolution'
     KeyVaultName: 'kv-trainee-skills-dev'
-    SecretsFilter: '*'
+    SecretsFilter: 'sqldb-username, sqldb-password'
 
 - task: AzureMysqlDeployment@1
   inputs:
