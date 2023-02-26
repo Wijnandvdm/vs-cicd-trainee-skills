@@ -20,5 +20,5 @@ steps:
     SqlUsername: '$(sqldb-username)'
     SqlPassword: '$(sqldb-password)'
     TaskNameSelector: 'SqlTaskFile'
-    SqlFile: 'testfile.sql'
+    SqlFile: '$(Build.SourcesDirectory)/create-tables-for-development.sql'
     IpDetectionMethod: 'AutoDetect'
