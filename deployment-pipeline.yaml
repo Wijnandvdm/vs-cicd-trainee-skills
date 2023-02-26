@@ -24,4 +24,4 @@ steps:
     SqlPassword: '$(sqldb-password)'
     TaskNameSelector: 'SqlTaskFile'
     SqlFile: '$(Build.SourcesDirectory)/create-tables-for-development.sql'
-    IpDetectionMethod: 'IPAddressRange'
+    IpDetectionMethod: 'AutoDetect'
