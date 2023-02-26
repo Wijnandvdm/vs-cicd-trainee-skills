@@ -12,6 +12,18 @@ steps:
     KeyVaultName: 'kv-trainee-skills-dev'
     SecretsFilter: 'sqldb-username, sqldb-password'
 
+- task: SqlAzureDacpacDeployment@1
+  inputs:
+    azureSubscription: 'DeployTraineeSkillsSolution'
+    AuthenticationType: 'server'
+    ServerName: 'sqlsrv-trainee-skills-tst.database.windows.net'
+    DatabaseName: 'sqldb-trainee-skills-tst'
+    SqlUsername: '$(sqldb-username)'
+    SqlPassword: '$(sqldb-password)'
+    deployType: 'SqlTask'
+    SqlFile: '$(Build.SourcesDirectory)/create-tables-for-development.sql'
+    IpDetectionMethod: 'AutoDetect'
+
 - task: AzureMysqlDeployment@1
   inputs:
     azureSubscription: 'DeployTraineeSkillsSolution'
@@ -22,3 +34,4 @@ steps:
     TaskNameSelector: 'SqlTaskFile'
     SqlFile: '$(Build.SourcesDirectory)/create-tables-for-development.sql'
     IpDetectionMethod: 'AutoDetect'
+
