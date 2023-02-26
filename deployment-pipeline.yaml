@@ -9,7 +9,7 @@ steps:
   displayName: 'Get secrets from Key Vault'
   inputs:
     azureSubscription: 'DeployTraineeSkillsSolution'
-    KeyVaultName: 'kv-trainee-skills-dev'
+    KeyVaultName: 'kv-trainee-skills-tst'
     SecretsFilter: 'sqldb-username, sqldb-password'
 
 - task: SqlAzureDacpacDeployment@1
