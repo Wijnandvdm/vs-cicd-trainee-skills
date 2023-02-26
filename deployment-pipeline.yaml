@@ -8,8 +8,10 @@ steps:
 - task: AzureFunctionApp@1
   displayName: 'Deploy logic app workflows'
   inputs:
-     azureSubscription: 'MyServiceConnection'
+     azureSubscription: 'DeployTraineeSkillsSolution'
      appType: 'functionAppLinux'
      appName: 'la-msf-dev'
      package: 'MyBuildArtifact.zip'
      deploymentMethod: 'zipDeploy'
+
+
