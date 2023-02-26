@@ -2,23 +2,24 @@ trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-2019'
 
 steps:
 - task: AzureKeyVault@2
-  displayName: 'Get secret from Key Vault'
+  displayName: 'Get secrets from Key Vault'
   inputs:
     azureSubscription: 'DeployTraineeSkillsSolution'
     KeyVaultName: 'kv-trainee-skills-dev'
-    SecretsFilter: '*'
+    SecretsFilter: 'sqldb-username, sqldb-password'
 
-- task: AzureMysqlDeployment@1
+- task: SqlAzureDacpacDeployment@1
   inputs:
     azureSubscription: 'DeployTraineeSkillsSolution'
+    AuthenticationType: 'server'
     ServerName: 'sqlsrv-trainee-skills-tst.database.windows.net'
     DatabaseName: 'sqldb-trainee-skills-tst'
     SqlUsername: '$(sqldb-username)'
     SqlPassword: '$(sqldb-password)'
-    TaskNameSelector: 'SqlTaskFile'
+    deployType: 'SqlTask'
     SqlFile: '$(Build.SourcesDirectory)/create-tables-for-development.sql'
     IpDetectionMethod: 'AutoDetect'
