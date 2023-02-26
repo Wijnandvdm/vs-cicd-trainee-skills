@@ -12,6 +12,9 @@ steps:
     KeyVaultName: 'kv-trainee-skills-dev'
     SecretsFilter: 'sqldb-username, sqldb-password'
 
+- script: |
+    Write-Host $(sqldb-username)
+
 - task: AzureMysqlDeployment@1
   inputs:
     azureSubscription: 'DeployTraineeSkillsSolution'
@@ -21,5 +24,4 @@ steps:
     SqlPassword: '$(sqldb-password)'
     TaskNameSelector: 'SqlTaskFile'
     SqlFile: '$(Build.SourcesDirectory)/create-tables-for-development.sql'
-    IpDetectionMethod: 'AutoDetect'
-    allowIpAddress: '$(Agent.IPAddress)'
+    IpDetectionMethod: 'IPAddressRange'
