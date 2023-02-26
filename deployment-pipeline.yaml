@@ -9,7 +9,7 @@ steps:
   displayName: 'Deploy logic app workflows'
   inputs:
      azureSubscription: 'MyServiceConnection'
-     appType: 'functionAppLinux' ## Default: functionApp 
+     appType: 'functionAppLinux'
      appName: 'la-msf-dev'
      package: 'MyBuildArtifact.zip'
      deploymentMethod: 'zipDeploy'
