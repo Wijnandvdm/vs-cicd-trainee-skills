@@ -5,13 +5,19 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: AzureFunctionApp@1
-  displayName: 'Deploy logic app workflows'
+- task: AzureKeyVault@2
+  displayName: 'Get secret from Key Vault'
   inputs:
-     azureSubscription: 'DeployTraineeSkillsSolution'
-     appType: 'functionAppLinux'
-     appName: 'la-msf-dev'
-     package: 'MyBuildArtifact.zip'
-     deploymentMethod: 'zipDeploy'
+    azureSubscription: 'DeployTraineeSkillsSolution'
+    KeyVaultName: 'kv-trainee-skills-dev'
+    SecretsFilter: 'sqldb-username'
 
-
+# - task: AzureMysqlDeployment@1
+#   inputs:
+#     azureSubscription: 'DeployTraineeSkillsSolution'
+#     ServerName: 'sqlsrv-trainee-skills-tst.database.windows.net'
+#     DatabaseName: 'sqldb-trainee-skills-tst'
+#     SqlUsername: ''
+#     SqlPassword: ''
+#     TaskNameSelector: 'SqlTaskFile'
+#     IpDetectionMethod: 'AutoDetect'
