@@ -15,8 +15,8 @@ steps:
 - task: AzureMysqlDeployment@1
   inputs:
     azureSubscription: 'DeployTraineeSkillsSolution'
-    ServerName: 'sqlsrv-trainee-skills-tst.database.windows.net'
-    DatabaseName: 'sqldb-trainee-skills-tst'
+    ServerName: 'sqlsrv-trainee-skills-dev.database.windows.net'
+    DatabaseName: 'sqldb-trainee-skills-dev'
     SqlUsername: '$(sqldb-username)'
     SqlPassword: '$(sqldb-password)'
     TaskNameSelector: 'SqlTaskFile'
