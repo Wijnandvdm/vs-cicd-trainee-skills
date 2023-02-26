@@ -7,7 +7,7 @@ pool:
 steps:
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'YourServiceConnectionName'
+    azureSubscription: 'DeployTraineeSkillsSolution'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
