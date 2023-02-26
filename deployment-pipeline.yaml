@@ -15,10 +15,11 @@ steps:
 - task: AzureMysqlDeployment@1
   inputs:
     azureSubscription: 'DeployTraineeSkillsSolution'
-    ServerName: 'sqlsrv-trainee-skills-dev.database.windows.net'
-    DatabaseName: 'sqldb-trainee-skills-dev'
+    ServerName: 'sqlsrv-trainee-skills-tst.database.windows.net'
+    DatabaseName: 'sqldb-trainee-skills-tst'
     SqlUsername: '$(sqldb-username)'
     SqlPassword: '$(sqldb-password)'
     TaskNameSelector: 'SqlTaskFile'
     SqlFile: '$(Build.SourcesDirectory)/create-tables-for-development.sql'
     IpDetectionMethod: 'AutoDetect'
+    allowIpAddress: '$(Agent.IPAddress)'
