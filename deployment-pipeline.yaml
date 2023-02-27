@@ -9,10 +9,11 @@ steps:
   displayName: 'Get secrets from Key Vault'
   inputs:
     azureSubscription: 'DeployTraineeSkillsSolution'
-    KeyVaultName: 'kv-trainee-skills-dev'
+    KeyVaultName: 'kv-trainee-skills-tst'
     SecretsFilter: 'sqldb-username, sqldb-password'
 
 - task: SqlAzureDacpacDeployment@1
+  displayName: 'Create or update stored procedures and table trigger'
   inputs:
     azureSubscription: 'DeployTraineeSkillsSolution'
     AuthenticationType: 'server'
@@ -21,5 +22,5 @@ steps:
     SqlUsername: '$(sqldb-username)'
     SqlPassword: '$(sqldb-password)'
     deployType: 'SqlTask'
-    SqlFile: '$(Build.SourcesDirectory)/create-tables-for-development.sql'
+    SqlFile: '$(Build.SourcesDirectory)/update-stored-procedures-and-table-trigger.sql'
     IpDetectionMethod: 'AutoDetect'
