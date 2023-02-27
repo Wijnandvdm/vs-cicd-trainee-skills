@@ -97,12 +97,12 @@ GO
 CREATE OR ALTER PROCEDURE CheckAverageScoreToday
 AS
 BEGIN
-  SELECT q.question_id, t.trainee_name, AVG(r.score) AS average_score
+  SELECT q.question, t.trainee_name, AVG(r.score) AS average_score
   FROM responses r
   JOIN trainees t ON r.trainee_id = t.trainee_id
-  JOIN (SELECT DISTINCT question_id FROM responses) q ON r.question_id = q.question_id
+  JOIN questions q ON r.question_id = q.question_id
   WHERE CONVERT(DATE, r.submit_date) = CONVERT(DATE, GETDATE())
-  GROUP BY q.question_id, t.trainee_name
+  GROUP BY q.question, t.trainee_name
   HAVING AVG(r.score) < 2;
 END;
 
